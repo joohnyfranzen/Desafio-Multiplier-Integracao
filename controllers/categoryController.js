@@ -9,9 +9,25 @@ module.exports = class CategoryController {
         const category = {codigo, titulo, status}
 
         try { 
-            createdCategory = await Category.create(category)
+            const createdCategory = await Category.create(category)
         } catch(err) {
             console.log(err)
         }
+    }
+
+    static async show(req, res) {
+
+        const id = req.params.id
+
+        try {
+            const show = await Category.findOne({ where: {id}})
+
+            res.status(200).send(show)
+            
+        } catch(err) {
+            console.log(err)
+        }
+
+
     }
 }
