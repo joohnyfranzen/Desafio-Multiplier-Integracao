@@ -13,6 +13,11 @@ const Category = db.define('Category', {
         allowNull: false,
         required: true,
     },
+    status: {
+        type: Datatypes.BOOLEAN,
+        allowNull: false,
+        required: true,
+    },
 
 }) 
 
