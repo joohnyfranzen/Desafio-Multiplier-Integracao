@@ -30,7 +30,16 @@ module.exports = class CategoryController {
         } catch(err) {
             console.log(err)
         }
+    }
 
+    static async index(req, res) {
+        
+        try {
+            const index = await Category.findAll()
 
+            res.status(200).send(index)
+        } catch(err) {
+            console.log(err)
+        }
     }
 }
