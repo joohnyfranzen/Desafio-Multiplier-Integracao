@@ -42,4 +42,17 @@ module.exports = class CategoryController {
             console.log(err)
         }
     }
+    
+    static async update(req, res) {
+
+        const update = req.body
+        const id = req.params.id
+        try {
+            const updated = await Category.update(update, { where: {id}})
+
+            res.status(200).send(update)
+        } catch(err) {
+            console.log(err)
+        }
+    }
 }
