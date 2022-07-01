@@ -10,6 +10,9 @@ module.exports = class CategoryController {
 
         try { 
             const createdCategory = await Category.create(category)
+
+            res.status(200).send(createdCategory)
+
         } catch(err) {
             console.log(err)
         }
@@ -23,7 +26,7 @@ module.exports = class CategoryController {
             const show = await Category.findOne({ where: {id}})
 
             res.status(200).send(show)
-            
+
         } catch(err) {
             console.log(err)
         }
