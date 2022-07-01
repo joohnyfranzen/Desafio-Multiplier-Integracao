@@ -1,20 +1,20 @@
-const { Datatypes } = require('sequelize')
+const { DataTypes } = require('sequelize')
 
 const db = require('../db/conn')
 
 const Category = db.define('Category', {
     codigo: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         required: true,
     },
     titulo: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         required: true,
     },
     status: {
-        type: Datatypes.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
         required: true,
     },
