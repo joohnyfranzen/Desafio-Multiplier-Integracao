@@ -28,5 +28,16 @@ module.exports = class ProductController {
         } catch(err) {
             console.log(err)
         }
-    }     
+    }
+    
+    static async index(req, res) {
+
+        try {
+            const index = await Product.findAll()
+            
+            res.status(202).json(index)
+        } catch(err) {
+            console.log(err)
+        }
+    }
 }
