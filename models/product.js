@@ -8,5 +8,9 @@ const Product = db.define('Product', {
         allowNull: false,
         required: true,
     },
-    
+    codigo: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        required: true,
+    },
 })
