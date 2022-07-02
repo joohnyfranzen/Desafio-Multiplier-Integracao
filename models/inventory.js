@@ -9,6 +9,11 @@ const Inventory = db.define('Inventory', {
         allowNull: false,
         required: true,
     },
+    quantidade: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        required: true,
+    },
 
 }) 
 
