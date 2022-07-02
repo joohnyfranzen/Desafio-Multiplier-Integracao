@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize')
 
-const db = rquire('../db/conn')
+const db = require('../db/conn')
 
 const Product = db.define('Product', {
     idCategoria: {
@@ -34,3 +34,5 @@ const Product = db.define('Product', {
         required: true,
     },
 })
+
+module.exports = Product
