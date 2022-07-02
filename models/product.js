@@ -23,4 +23,14 @@ const Product = db.define('Product', {
         allowNull: false,
         required: true,
     },
+    valor: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+        required: true,
+    },
+    status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        required: true,
+    },
 })
