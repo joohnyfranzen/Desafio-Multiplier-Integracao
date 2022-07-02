@@ -5,5 +5,6 @@ const InventoryController = require('../controllers/inventoryController')
 
 router.get('/produtos/:id/estoque', InventoryController.show)
 router.patch('/produtos/:id/estoque', InventoryController.update)
+router.delete('/produtos/:id/estoque', InventoryController.delete)
 
 module.exports = router
