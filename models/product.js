@@ -13,4 +13,9 @@ const Product = db.define('Product', {
         allowNull: false,
         required: true,
     },
+    nome: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        required: true,
+    },
 })
