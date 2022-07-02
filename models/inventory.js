@@ -19,7 +19,11 @@ const Inventory = db.define('Inventory', {
         allowNull: false,
         required: true,
     },
-
+    status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        required: true,
+    },
 }) 
 
 module.exports = Inventory
