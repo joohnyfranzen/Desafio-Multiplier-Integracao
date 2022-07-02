@@ -18,4 +18,9 @@ const Product = db.define('Product', {
         allowNull: false,
         required: true,
     },
+    descricao: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        required: true,
+    },
 })
