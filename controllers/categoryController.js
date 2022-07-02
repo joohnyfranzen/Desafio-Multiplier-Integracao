@@ -11,7 +11,7 @@ module.exports = class CategoryController {
         try { 
             const createdCategory = await Category.create(category)
 
-            res.status(200).send(createdCategory)
+            res.status(200).json(createdCategory)
 
         } catch(err) {
             console.log(err)
@@ -25,7 +25,7 @@ module.exports = class CategoryController {
         try {
             const show = await Category.findOne({ where: {id}})
 
-            res.status(200).send(show)
+            res.status(200).json(show)
 
         } catch(err) {
             console.log(err)
@@ -37,7 +37,7 @@ module.exports = class CategoryController {
         try {
             const index = await Category.findAll()
 
-            res.status(200).send(index)
+            res.status(200).json(index)
 
         } catch(err) {
             console.log(err)
@@ -52,7 +52,7 @@ module.exports = class CategoryController {
         try {
             const updated = await Category.update(update, { where: {id}})
 
-            res.status(200).send(update)
+            res.status(200).json(update)
 
         } catch(err) {
             console.log(err)
