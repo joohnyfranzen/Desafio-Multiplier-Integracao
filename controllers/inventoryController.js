@@ -29,4 +29,13 @@ module.exports = class InventoryController {
             console.log(err)
         }
     }
+
+    static async delete(req, res) {
+
+        try {
+            res.status(501).json({message: `Não se pode deletar um estoque !`})
+        } catch(err) {
+            console.log(err)
+        }
+    } 
 }
