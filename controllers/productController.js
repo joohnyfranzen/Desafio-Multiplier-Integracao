@@ -47,7 +47,7 @@ module.exports = class ProductController {
         const id = req.params.id
 
         try {
-            const updatedProduct = await Product.update(update, ({where: {id}})) 
+            const updatedProduct = await Product.update(update, {where: {id}}) 
 
             res.status(202).json(update)
         } catch(err) {
