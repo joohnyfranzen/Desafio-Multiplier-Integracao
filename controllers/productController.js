@@ -19,7 +19,7 @@ module.exports = class ProductController {
 
     static async show(req, res) {
 
-        const id = req.params
+        const id = req.params.id
 
         try {
             const show = await Product.findOne({where: {id}})
