@@ -15,4 +15,18 @@ module.exports = class InventoryController {
             console.log(err)
         }
     }
+
+    static async update(req, res) {
+
+        const id = req.params.id
+        const update = req.body
+
+        try {
+            const updated = await Inventory.update(update, {where: {id}})
+
+            res.status(200).json(updated)
+        } catch(err) {
+            console.log(err)
+        }
+    }
 }
