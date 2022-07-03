@@ -1,4 +1,5 @@
 const Product = require('../models/product')
+const Inventory = require('../models/inventory')
 
 module.exports = class ProductController {
 
@@ -9,9 +10,22 @@ module.exports = class ProductController {
         const product = {idCategoria, codigo, nome, descricao, valor, status}
 
         try {
+
+
             const createdProduct = await Product.create(product)
 
-            res.status(202).json(createdProduct)
+            const idProduto = createdProduct.id
+
+            let quantidade = 0
+
+            let reserva = 0
+
+            const inventory = {idProduto, quantidade, reserva, status}
+
+            const createdInventory = await Inventory.create(inventory)
+
+            res.status(202).json({createdProduct, createdInventory})
+
         } catch(err) {
             console.log(err)
         }
