@@ -2,13 +2,9 @@ const { DataTypes } = require('sequelize')
 
 const db = require('../db/conn')
 
+const Product = require('./product')
+
 const Inventory = db.define('Inventory', {
-      
-    idProduto: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        required: true,
-    },
     quantidade: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -25,5 +21,10 @@ const Inventory = db.define('Inventory', {
         required: true,
     },
 }) 
+
+Inventory.belongsTo(Product, {
+    constraint: true,
+    foreignKey: 'idProduto'
+})
 
 module.exports = Inventory

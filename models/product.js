@@ -2,12 +2,9 @@ const { DataTypes } = require('sequelize')
 
 const db = require('../db/conn')
 
+const Category = require('./category')
+
 const Product = db.define('Product', {
-    idCategoria: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        required: true,
-    },
     codigo: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -33,6 +30,11 @@ const Product = db.define('Product', {
         allowNull: false,
         required: true,
     },
+})
+
+Product.belongsTo(Category, {
+    constraint: true,
+    foreignKey: 'idCategoria'
 })
 
 module.exports = Product
