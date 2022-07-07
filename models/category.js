@@ -21,7 +21,7 @@ const dbConfig = {
     },
 }
 
-const CategoryMysql = mysql.define('Category', {dbConfig})
-const CategoryPostgres = postgres.define('Category', {dbConfig}) 
+const CategoryMysql = mysql.define('Category', dbConfig)
+const CategoryPostgres = postgres.define('Category', dbConfig) 
 
 module.exports = { CategoryMysql, CategoryPostgres }

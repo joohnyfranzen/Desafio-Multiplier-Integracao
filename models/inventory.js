@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize')
 const mysql = require('../db/mysql')
 const postgres = require('../db/postgres')
 
-const ProductMysql = require('./product').ProducMysql
+const ProductMysql = require('./product').ProductMysql
 const ProductPostgres = require('./product').ProductPostgres
 
 const dbConfig = {
