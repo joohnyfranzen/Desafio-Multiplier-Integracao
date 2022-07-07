@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('./db/mysql');
 const postgres = require('./db/postgres')
+const cron = require('node-cron')
 
 const app = express()
 
@@ -17,6 +18,9 @@ app.use('/', categoryRoutes)
 app.use('/', productRoutes)
 app.use('/', inventoryRoutes)
 
+cron.schedule ('* * * * *', () => {
+    const config = require('./config')
+})
 mysql.sync().then(() => {
     app.listen(3000)
     postgres.sync({force: true}).then(() => {
