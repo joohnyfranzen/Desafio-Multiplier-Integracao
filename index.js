@@ -1,5 +1,6 @@
 const express = require('express');
-const conn = require('./db/conn');
+const mysql = require('./db/mysql');
+const postgres = require('./db/postgres')
 
 const app = express()
 
@@ -16,7 +17,10 @@ app.use('/', categoryRoutes)
 app.use('/', productRoutes)
 app.use('/', inventoryRoutes)
 
-conn.sync().then(() => {
+mysql.sync().then(() => {
     app.listen(3000)
+    postgres.sync({force: true}).then(() => {
+        
+    })
 })
 
