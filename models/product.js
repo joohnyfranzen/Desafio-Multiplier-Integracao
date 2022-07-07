@@ -1,10 +1,12 @@
 const { DataTypes } = require('sequelize')
 
-const db = require('../db/conn')
+const mysql = require('../db/mysql')
+const postgres = require('../db/postgres')
 
-const Category = require('./category')
+const CategoryMysql = require('./category').CategoryMysql
+const CategoryPostgres = require('./category').CategoryPostgres
 
-const Product = db.define('Product', {
+const dbConfig = {
     codigo: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -30,11 +32,18 @@ const Product = db.define('Product', {
         allowNull: false,
         required: true,
     },
-})
+}
 
-Product.belongsTo(Category, {
+const ProductMysql = mysql.define('Product', dbConfig)
+const ProductPostgres = postgres.define('Product', dbConfig)
+
+ProductMysql.belongsTo(CategoryMysql, {
+    constraint: true,
+    foreignKey: 'idCategoria'
+})
+ProductPostgres.belongsTo(CategoryPostgres, {
     constraint: true,
     foreignKey: 'idCategoria'
 })
 
-module.exports = Product
+module.exports = { ProductMysql, ProductPostgres }
