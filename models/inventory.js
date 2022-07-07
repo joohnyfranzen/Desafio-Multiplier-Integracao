@@ -1,10 +1,12 @@
 const { DataTypes } = require('sequelize')
 
-const db = require('../db/conn')
+const mysql = require('../db/mysql')
+const postgres = require('../db/postgres')
 
-const Product = require('./product')
+const ProductMysql = require('./product').ProducMysql
+const ProductPostgres = require('./product').ProductPostgres
 
-const Inventory = db.define('Inventory', {
+const dbConfig = {
     quantidade: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -19,12 +21,19 @@ const Inventory = db.define('Inventory', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         required: true,
-    },
-}) 
+    }
+}
 
-Inventory.belongsTo(Product, {
+const InventoryMysql = mysql.define('Inventory', dbConfig)
+const InventoryPostgres = postgres.define('Inventory', dbConfig) 
+
+InventoryMysql.belongsTo(ProductMysql, {
+    constraint: true,
+    foreignKey: 'idProduto'
+})
+InventoryPostgres.belongsTo(ProductPostgres, {
     constraint: true,
     foreignKey: 'idProduto'
 })
 
-module.exports = Inventory
+module.exports = { InventoryMysql, InventoryPostgres }
