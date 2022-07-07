@@ -25,6 +25,8 @@
     "mysql2": "^2.3.3",
     "node-cron": "^3.0.1",
     "nodecron": "^0.2.0",
+    "pg": "^8.7.3",
+    "postgres": "^3.2.4",
     "sequelize": "^6.21.2"
   }
 }
