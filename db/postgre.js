@@ -1,7 +1,6 @@
-const sequelize = require("sequelize");
-const { Sequelize } = require("sequelize");
+const { Sequelize } = require('sequelize');
 
-const database = new Sequelize(  "postgres://postgres@localhost:5433/Desafio_RestAPI_NodeJS", 
+const sequelize = new Sequelize(  "postgres://postgres@localhost:5433/multiplier", 
   {
     dialect: "postgres",
     password: "123",
