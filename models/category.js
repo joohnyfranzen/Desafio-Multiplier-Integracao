@@ -1,8 +1,9 @@
 const { DataTypes } = require('sequelize')
 
-const db = require('../db/conn')
+const mysql = require('../db/mysql')
+const postgres = require('../db/postgres')
 
-const Category = db.define('Category', {
+const dbConfig = {
     codigo: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -18,7 +19,9 @@ const Category = db.define('Category', {
         allowNull: false,
         required: true,
     },
+}
 
-}) 
+const CategoryMysql = mysql.define('Category', dbConfig)
+const CategoryPostgres = postgres.define('Category', dbConfig) 
 
-module.exports = Category
+module.exports = { CategoryMysql, CategoryPostgres }

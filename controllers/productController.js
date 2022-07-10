@@ -1,5 +1,5 @@
-const Product = require('../models/product')
-const Inventory = require('../models/inventory')
+const Product = require('../models/product').ProductMysql
+const Inventory = require('../models/inventory').InventoryMysql
 
 module.exports = class ProductController {
 
