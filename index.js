@@ -24,6 +24,10 @@ app.use("/", inventoryRoutes);
 cron.schedule(`* ${env.CRON_TIME} * * *`, () => { // add a time backup
   const config = require("./config");
   console.log("Running cron schedule, backup in move");
+},
+{
+  scheduled: true,
+  timezone: "America/Sao_Paulo",
 });
 mysql.sync().then(() => { // connect to databases
   postgres.sync().then(() => {
