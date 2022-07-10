@@ -21,7 +21,7 @@ app.use("/", categoryRoutes);
 app.use("/", productRoutes);
 app.use("/", inventoryRoutes);
 
-cron.schedule('* 19 * * *', () => { // add a time backup
+cron.schedule('* 2 * * *', () => { // add a time backup
   const config = require("./config");
   console.log("Running cron schedule, backup in move");
 },
