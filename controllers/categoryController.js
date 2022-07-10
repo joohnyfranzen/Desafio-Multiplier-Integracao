@@ -9,7 +9,7 @@ module.exports = class CategoryController {
     try {
       const createdCategory = await Category.create(category);
 
-      res.status(200).json(createdCategory);
+      res.status(201).json(createdCategory);
     } catch (err) {
       console.log(err);
     }
@@ -21,7 +21,7 @@ module.exports = class CategoryController {
     try {
       const show = await Category.findOne({ where: { id } });
 
-      res.status(200).json(show);
+      res.status(202).json(show);
     } catch (err) {
       console.log(err);
     }
@@ -31,7 +31,7 @@ module.exports = class CategoryController {
     try {
       const index = await Category.findAll();
 
-      res.status(200).json(index);
+      res.status(202).json(index);
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +44,7 @@ module.exports = class CategoryController {
     try {
       const updated = await Category.update(update, { where: { id } });
 
-      res.status(200).json(update);
+      res.status(206).json(update);
     } catch (err) {
       console.log(err);
     }
@@ -55,7 +55,7 @@ module.exports = class CategoryController {
     try {
       const deleted = await Category.destroy({ where: { id } });
 
-      res.status(200).json({ message: `Categoria deletada` });
+      res.status(202).json({ message: `Categoria deletada` });
     } catch (err) {
       console.log(err);
     }

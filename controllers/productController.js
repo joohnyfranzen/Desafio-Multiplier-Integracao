@@ -9,19 +9,32 @@ module.exports = class ProductController {
     const product = { idCategoria, codigo, nome, descricao, valor, status };
 
     try {
-      const createdProduct = await Product.create(product);
 
-      const idProduto = createdProduct.id;
+      const productExists = await Product.findOne({where: {nome}}); 
 
-      let quantidade = 0;
+      if(!productExists) {
 
-      let reserva = 0;
+        const createdProduct = await Product.create(product);
 
-      const inventory = { idProduto, quantidade, reserva, status };
+        const idProduto = createdProduct.id;
+  
+        let quantidade = 0;
+  
+        let reserva = 0;
+  
+        const inventory = { idProduto, quantidade, reserva, status };
+        
+        const createdInventory = await Inventory.create(inventory);
+  
+        res.status(201).json({ createdProduct, createdInventory });
 
-      const createdInventory = await Inventory.create(inventory);
+      } else {
 
-      res.status(202).json({ createdProduct, createdInventory });
+        res.status(226).json({message: `Produto já existe, e não pode ser duplicado`});
+
+      }
+
+
     } catch (err) {
       console.log(err);
     }
@@ -56,7 +69,7 @@ module.exports = class ProductController {
     try {
       const updatedProduct = await Product.update(update, { where: { id } });
 
-      res.status(202).json(update);
+      res.status(206).json(update);
     } catch (err) {
       console.log(err);
     }

@@ -7,7 +7,7 @@ module.exports = class InventoryController {
     try {
       const show = await Inventory.findOne({ where: { id } });
 
-      res.status(200).json(show);
+      res.status(202).json(show);
     } catch (err) {
       console.log(err);
     }
@@ -20,7 +20,7 @@ module.exports = class InventoryController {
     try {
       const updated = await Inventory.update(update, { where: { id } });
 
-      res.status(200).json(updated);
+      res.status(206).json(updated);
     } catch (err) {
       console.log(err);
     }
