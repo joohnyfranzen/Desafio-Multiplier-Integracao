@@ -3,6 +3,7 @@ const { Sequelize } = require('sequelize')
 const sequelize = new Sequelize('multiplier', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
+    logging: false
 })
 
 try {
