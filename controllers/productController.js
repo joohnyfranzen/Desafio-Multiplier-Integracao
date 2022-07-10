@@ -2,7 +2,8 @@ const Product = require("../models/product").ProductMysql;
 const Inventory = require("../models/inventory").InventoryMysql;
 
 module.exports = class ProductController {
-  static async store(req, res) {
+  static async store(req, res) { // Function to create one Product on the table
+
     const { idCategoria, codigo, nome, descricao, valor, status } = req.body;
 
     const product = { idCategoria, codigo, nome, descricao, valor, status };
@@ -26,7 +27,7 @@ module.exports = class ProductController {
     }
   }
 
-  static async show(req, res) {
+  static async show(req, res) { // Function to show one Product on the table
     const id = req.params.id;
 
     try {
@@ -38,7 +39,7 @@ module.exports = class ProductController {
     }
   }
 
-  static async index(req, res) {
+  static async index(req, res) { // Function to show all Products on the table
     try {
       const index = await Product.findAll();
 
@@ -48,7 +49,7 @@ module.exports = class ProductController {
     }
   }
 
-  static async update(req, res) {
+  static async update(req, res) { // Function to update one Product on the table
     const update = req.body;
     const id = req.params.id;
 
@@ -61,7 +62,7 @@ module.exports = class ProductController {
     }
   }
 
-  static async delete(req, res) {
+  static async delete(req, res) { // Function to delete one Product on the table
     const id = req.params.id;
 
     try {

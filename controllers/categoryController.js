@@ -1,7 +1,7 @@
 const Category = require("../models/category").CategoryMysql;
 
 module.exports = class CategoryController {
-  static async store(req, res) {
+  static async store(req, res) { // Function to create a category in the table
     const { codigo, titulo, status } = req.body;
 
     const category = { codigo, titulo, status };
@@ -15,7 +15,7 @@ module.exports = class CategoryController {
     }
   }
 
-  static async show(req, res) {
+  static async show(req, res) { // Function to show one category of the table
     const id = req.params.id;
 
     try {
@@ -27,7 +27,7 @@ module.exports = class CategoryController {
     }
   }
 
-  static async index(req, res) {
+  static async index(req, res) { // Function to show all categorys of the table
     try {
       const index = await Category.findAll();
 
@@ -37,7 +37,7 @@ module.exports = class CategoryController {
     }
   }
 
-  static async update(req, res) {
+  static async update(req, res) { // Function to update one category of the table
     const update = req.body;
     const id = req.params.id;
 
@@ -50,7 +50,7 @@ module.exports = class CategoryController {
     }
   }
 
-  static async delete(req, res) {
+  static async delete(req, res) { // Function to delete one category of the table
     const id = req.params.id;
     try {
       const deleted = await Category.destroy({ where: { id } });

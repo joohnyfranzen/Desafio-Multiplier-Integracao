@@ -1,7 +1,7 @@
 const Inventory = require("../models/inventory").InventoryMysql;
 
 module.exports = class InventoryController {
-  static async show(req, res) {
+  static async show(req, res) { // Function to show one Inventory of the table
     const id = req.params.id;
 
     try {
@@ -13,7 +13,7 @@ module.exports = class InventoryController {
     }
   }
 
-  static async update(req, res) {
+  static async update(req, res) { // Function to update one Inventory of the table
     const id = req.params.id;
     const update = req.body;
 
@@ -26,7 +26,7 @@ module.exports = class InventoryController {
     }
   }
 
-  static async delete(req, res) {
+  static async delete(req, res) { // Function to show that you cannot delete an Inventory of the table
     try {
       res.status(501).json({ message: `Não se pode deletar um estoque !` });
     } catch (err) {
