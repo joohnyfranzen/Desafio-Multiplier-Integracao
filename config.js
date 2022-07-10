@@ -13,62 +13,68 @@ async function transferDataCategory() {
         
         var sql = `INSERT INTO public."Categories" ("codigo", "titulo", "status", "createdAt", "updatedAt") VALUES `
 
-        Category = categories.map((categoria) => {
+        categories.map((categoria) => {
             sql += `(${categoria.codigo}, '${categoria.titulo}', ${categoria.status}, '${categoria.createdAt.toISOString().slice(0, 19).replace('T', ' ')}', '${new Date().toISOString().slice(0, 19).replace('T', ' ')}'),`
         })
         sql = sql.slice(0, -1);
         sql += ';';
-        postgres.query(sql, function (err, result) {
-            if (err) throw err
-        })
-        console.log('Categorias atualizadas no postgres')
+        if(categories[0])
+            postgres.query(sql, function (err, result) {
+                if (err) console.log(err);
+                console.log(result);
+                console.log('Categorias atualizadas no postgres')
+            })
+        
+        transferDataProduct();
     } catch(err) {
         console.log(err)
     }
     }
-transferDataCategory();
 
 async function transferDataProduct() {
     try {
-        const products = await ProductMysql.findAll()
+        const products = await ProductMysql.findAll();
         
-        var sql = `INSERT INTO public."Product" ("codigo", "nome", "descriçao", "valor", "status", "createdAt", "updatedAt") VALUES `
+        var sql = `INSERT INTO public."Products" ("codigo", "nome", "descricao", "valor", "status", "createdAt", "updatedAt", "idCategoria") VALUES `;
 
-        Product = products.map((product) => {
-            sql += `(${product.codigo}, '${product.nome}', '${product.descricao}', '${product.valor}', ${product.status}, '${product.createdAt.toISOString().slice(0, 19).replace('T', ' ')}', '${new Date().toISOString().slice(0, 19).replace('T', ' ')}'),`
+        products.map((product) => {
+            sql += `(${product.codigo}, '${product.nome}', '${product.descricao}', '${product.valor}', ${product.status}, '${product.createdAt.toISOString().slice(0, 19).replace('T', ' ')}', '${new Date().toISOString().slice(0, 19).replace('T', ' ')}', ${product.idCategoria}),`
         })
         sql = sql.slice(0, -1);
         sql += ';';
-        postgres.query(sql, function (err, result) {
-            if (err) throw err
-        })
-        console.log('Produtos atualizados no postgres')
+        if(products[0])
+            postgres.query(sql, function (err, result) {
+                if (err) throw err
+                console.log('Produtos atualizados no postgres')
+            })
+        transferDataInventory()
     } catch(err) {
         console.log(err)
     }
     }
-transferDataProduct();
+
    
 async function transferDataInventory() {
     try {
         const inventories = await InventoryMysql.findAll()
         
-        var sql = `INSERT INTO public."Inventory" ("quantidade", "reserva", "status", "createdAt", "updatedAt") VALUES `
+        var sql = `INSERT INTO public."Inventories" ("quantidade", "reserva", "status", "createdAt", "updatedAt", "idProduto") VALUES `
 
-        Inventory = inventories.map((inventory) => {
-            sql += `(${inventory.quantidade}, '${inventory.reserva}', ${inventory.status}, '${inventory.createdAt.toISOString().slice(0, 19).replace('T', ' ')}', '${new Date().toISOString().slice(0, 19).replace('T', ' ')}'),`
+        inventories.map((inventory) => {
+            sql += `(${inventory.quantidade}, '${inventory.reserva}', ${inventory.status}, '${inventory.createdAt.toISOString().slice(0, 19).replace('T', ' ')}', '${new Date().toISOString().slice(0, 19).replace('T', ' ')}', ${inventory.idProduto}),`
         })
         sql = sql.slice(0, -1);
         sql += ';';
-        postgres.query(sql, function (err, result) {
-            if (err) throw err
-        })
-        console.log('Inventário atualizados no postgres')
+        if(inventories[0])
+            postgres.query(sql, function (err, result) {
+                if (err) throw err
+                console.log('Inventário atualizados no postgres')
+            })
     } catch(err) {
         console.log(err)
     }
     }
-transferDataInventory();
+transferDataCategory();
 
 })
 })
