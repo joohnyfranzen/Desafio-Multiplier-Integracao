@@ -1,8 +1,9 @@
+const env = require('dotenv').config().parsed;
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize(  'postgres://postgres@localhost:5432/Meudatabase', {
+const sequelize = new Sequelize(  `postgres://${env.POSTGRES_USER}@${env.POSTGRES_HOST}:${env.POSTGRES_PORT}/${env.POSTGRES_SCHEMA}`, {
     dialect: 'postgres',
-    password: '123',
+    password: env.POSTGRES_PASS,
   }
 );
 

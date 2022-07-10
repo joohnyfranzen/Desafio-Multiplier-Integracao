@@ -1,9 +1,11 @@
+const env = require('dotenv').config().parsed;
 const { Sequelize } = require('sequelize')
 
-const sequelize = new Sequelize('multiplier', 'root', '', {
-    host: 'localhost',
+const sequelize = new Sequelize(`${env.MYSQL_SCHEMA}`, `${env.MYSQL_USER}`, `${env.MYSQL_PASS}`, {
+    host: `${env.MYSQL_HOST}` ,
     dialect: 'mysql',
-    logging: false
+    logging: false,
+    port: `${env.MYSQL_PORT}`
 })
 
 try {
