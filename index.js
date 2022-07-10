@@ -21,11 +21,11 @@ app.use('/', categoryRoutes)
 app.use('/', productRoutes)
 app.use('/', inventoryRoutes)
 
-// cron.schedule ('* * * * *', () => {
+cron.schedule (`* ${env.CRON_TIME} * * *`, () => {
 
-//     const config = require('./config')
-//     console.log('Running aplication every minut')
-// })
+    const config = require('./config')
+    console.log('Running cron schedule, backup in move')
+})
 mysql
 .sync()
 .then(() => {
