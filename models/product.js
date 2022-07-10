@@ -26,7 +26,7 @@ const dbConfig = {
     required: true,
   },
   status: {
-    type: DataTypes.TINYINT,
+    type: DataTypes.SMALLINT(0, 1),
     defaultValue:  1,
     allowNull: false,
     required: true,
