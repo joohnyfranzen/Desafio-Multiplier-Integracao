@@ -38,10 +38,12 @@ const ProductMysql = mysql.define('Product', dbConfig)
 const ProductPostgres = postgres.define('Product', dbConfig)
 
 ProductMysql.belongsTo(CategoryMysql, {
+    onDelete:'Null',
     constraint: true,
     foreignKey: 'idCategoria'
 })
 ProductPostgres.belongsTo(CategoryPostgres, {
+    onDelete:'Null',
     constraint: true,
     foreignKey: 'idCategoria'
 })

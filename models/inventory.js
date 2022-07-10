@@ -3,8 +3,7 @@ const { DataTypes } = require('sequelize')
 const mysql = require('../db/mysql')
 const postgres = require('../db/postgres')
 
-const ProductMysql = require('./product').ProductMysql
-const ProductPostgres = require('./product').ProductPostgres
+const { ProductMysql, ProductPostgres } = require('./product')
 
 const dbConfig = {
     quantidade: {
@@ -28,10 +27,12 @@ const InventoryMysql = mysql.define('Inventory', dbConfig)
 const InventoryPostgres = postgres.define('Inventory', dbConfig) 
 
 InventoryMysql.belongsTo(ProductMysql, {
+    onDelete: 'CASCADE',
     constraint: true,
     foreignKey: 'idProduto'
 })
 InventoryPostgres.belongsTo(ProductPostgres, {
+    onDelete: 'CASCADE',
     constraint: true,
     foreignKey: 'idProduto'
 })
