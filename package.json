@@ -4,7 +4,7 @@
   "description": "Projeto em node com sequelize de ORM e express como servidor e MYSQL e POSTGREE como banco de dados ",
   "main": "index.js",
   "scripts": {
-    "config": "node reset.js",
+    "reset": "node reset.js",
     "start": "nodemon ./index.js localhost 3000"
   },
   "repository": {
