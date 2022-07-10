@@ -6,12 +6,12 @@ const { CategoryMysql, CategoryPostgres } = require("./category");
 
 const dbConfig = {
   codigo: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(20),
     allowNull: false,
     required: true,
   },
   nome: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
     required: true,
   },
@@ -26,7 +26,8 @@ const dbConfig = {
     required: true,
   },
   status: {
-    type: DataTypes.BOOLEAN,
+    type: DataTypes.TINYINT,
+    defaultValue:  1,
     allowNull: false,
     required: true,
   },

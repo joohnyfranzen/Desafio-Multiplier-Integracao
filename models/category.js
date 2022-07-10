@@ -5,17 +5,18 @@ const postgres = require("../db/postgres");
 
 const dbConfig = {
   codigo: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(20),
     allowNull: false,
     required: true,
   },
   titulo: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
     required: true,
   },
   status: {
-    type: DataTypes.BOOLEAN,
+    type: DataTypes.TINYINT,
+    defaultValue: 1,
     allowNull: false,
     required: true,
   },
