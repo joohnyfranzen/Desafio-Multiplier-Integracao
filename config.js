@@ -5,7 +5,7 @@ const { InventoryMysql, InventoryPostgres } = require('./models/inventory')
 const { ProductMysql, ProductPostgres } = require('./models/product')
 
 mysql.sync().then(() => {
-postgres.sync().then(() => {   
+postgres.sync({force: true}).then(() => {   
                            
 async function transferDataCategory() {
     try {
