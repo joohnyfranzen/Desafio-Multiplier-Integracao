@@ -4,8 +4,8 @@ const { Sequelize } = require('sequelize')
 const sequelize = new Sequelize(`${env.MYSQL_SCHEMA}`, `${env.MYSQL_USER}`, `${env.MYSQL_PASS}`, {
     host: `${env.MYSQL_HOST}` ,
     dialect: 'mysql',
-    logging: false,
-    port: `${env.MYSQL_PORT}`
+    port: `${env.MYSQL_PORT}`,
+    logging: env.DEV_MODE == "true" ? true : false,
 })
 
 try {
