@@ -1,10 +1,10 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const InventoryController = require('../controllers/inventoryController')
+const InventoryController = require("../controllers/inventoryController");
 
-router.get('/produtos/:id/estoque', InventoryController.show)
-router.patch('/produtos/:id/estoque', InventoryController.update)
-router.delete('/produtos/:id/estoque', InventoryController.delete)
+router.get("/produtos/:id/estoque", InventoryController.show);
+router.patch("/produtos/:id/estoque", InventoryController.update);
+router.delete("/produtos/:id/estoque", InventoryController.delete);
 
-module.exports = router
+module.exports = router;

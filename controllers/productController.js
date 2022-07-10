@@ -1,84 +1,75 @@
-const Product = require('../models/product').ProductMysql
-const Inventory = require('../models/inventory').InventoryMysql
+const Product = require("../models/product").ProductMysql;
+const Inventory = require("../models/inventory").InventoryMysql;
 
 module.exports = class ProductController {
+  static async store(req, res) {
+    const { idCategoria, codigo, nome, descricao, valor, status } = req.body;
 
-    static async store(req, res) {
+    const product = { idCategoria, codigo, nome, descricao, valor, status };
 
-        const {idCategoria, codigo, nome, descricao, valor, status} = req.body
-    
-        const product = {idCategoria, codigo, nome, descricao, valor, status}
+    try {
+      const createdProduct = await Product.create(product);
 
-        try {
+      const idProduto = createdProduct.id;
 
+      let quantidade = 0;
 
-            const createdProduct = await Product.create(product)
+      let reserva = 0;
 
-            const idProduto = createdProduct.id
+      const inventory = { idProduto, quantidade, reserva, status };
 
-            let quantidade = 0
+      const createdInventory = await Inventory.create(inventory);
 
-            let reserva = 0
-
-            const inventory = {idProduto, quantidade, reserva, status}
-
-            const createdInventory = await Inventory.create(inventory)
-
-            res.status(202).json({createdProduct, createdInventory})
-
-        } catch(err) {
-            console.log(err)
-        }
+      res.status(202).json({ createdProduct, createdInventory });
+    } catch (err) {
+      console.log(err);
     }
+  }
 
-    static async show(req, res) {
+  static async show(req, res) {
+    const id = req.params.id;
 
-        const id = req.params.id
+    try {
+      const show = await Product.findOne({ where: { id } });
 
-        try {
-            const show = await Product.findOne({where: {id}})
-
-            res.status(202).json(show)
-        } catch(err) {
-            console.log(err)
-        }
+      res.status(202).json(show);
+    } catch (err) {
+      console.log(err);
     }
-    
-    static async index(req, res) {
+  }
 
-        try {
-            const index = await Product.findAll()
-            
-            res.status(202).json(index)
-        } catch(err) {
-            console.log(err)
-        }
+  static async index(req, res) {
+    try {
+      const index = await Product.findAll();
+
+      res.status(202).json(index);
+    } catch (err) {
+      console.log(err);
     }
+  }
 
-    static async update(req, res) {
+  static async update(req, res) {
+    const update = req.body;
+    const id = req.params.id;
 
-        const update = req.body
-        const id = req.params.id
+    try {
+      const updatedProduct = await Product.update(update, { where: { id } });
 
-        try {
-            const updatedProduct = await Product.update(update, {where: {id}}) 
-
-            res.status(202).json(update)
-        } catch(err) {
-            console.log(err)
-        }
+      res.status(202).json(update);
+    } catch (err) {
+      console.log(err);
     }
-    
-    static async delete(req, res) {
+  }
 
-        const id = req.params.id
+  static async delete(req, res) {
+    const id = req.params.id;
 
-        try {
-            const deleted = await Product.destroy({where: {id}})
+    try {
+      const deleted = await Product.destroy({ where: { id } });
 
-            res.status(202).json({message: `Produto deletado`})
-        } catch(err) {
-            console.log(err)
-        }
+      res.status(202).json({ message: `Produto deletado` });
+    } catch (err) {
+      console.log(err);
     }
-}
+  }
+};
