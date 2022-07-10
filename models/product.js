@@ -2,9 +2,7 @@ const { DataTypes } = require('sequelize')
 
 const mysql = require('../db/mysql')
 const postgres = require('../db/postgres')
-
-const CategoryMysql = require('./category').CategoryMysql
-const CategoryPostgres = require('./category').CategoryPostgres
+const { CategoryMysql, CategoryPostgres } = require('./category')
 
 const dbConfig = {
     codigo: {
@@ -38,12 +36,10 @@ const ProductMysql = mysql.define('Product', dbConfig)
 const ProductPostgres = postgres.define('Product', dbConfig)
 
 ProductMysql.belongsTo(CategoryMysql, {
-    onDelete:'Null',
     constraint: true,
     foreignKey: 'idCategoria'
 })
 ProductPostgres.belongsTo(CategoryPostgres, {
-    onDelete:'Null',
     constraint: true,
     foreignKey: 'idCategoria'
 })
