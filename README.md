@@ -1,4 +1,4 @@
-# Desafio Multiplier Integracao
+# Desafio Multiplier Integração
 
 ## Desenvolvido em Node, o desafio consiste em quatro etapas:
 - Criar um Banco de dados PostgreSQL
