@@ -33,7 +33,7 @@
 5. status
 6. idCategoria
 
-- Invetários
+- Inventários
 1. quantidade
 2. reserva
 3. status
